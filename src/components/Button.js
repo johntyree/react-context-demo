@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import LanguageContext from '../contexts/LanguageContext';
+import ColorContext from '../contexts/ColorContext';
 
 class Button extends Component {
 
-    static contextType = LanguageContext;
-
-    renderText() {
-        switch(this.context) {
+    renderText(context) {
+        switch(context) {
             case 'dutch':
                 return 'Voorleggen'
             case 'english':
@@ -15,11 +14,21 @@ class Button extends Component {
         }
     }
 
+    renderButton(colorBit) {
+      return (
+          <button className={`ui button ${colorBit}`}>
+            <LanguageContext.Consumer>
+                {this.renderText.bind(this)}
+            </LanguageContext.Consumer>
+          </button>
+      );
+    }
+
     render() {
         return (
-            <button className="ui button primary">
-                {this.renderText()}
-            </button>
+            <ColorContext.Consumer>
+                {this.renderButton.bind(this)}
+            </ColorContext.Consumer>
         );
     }
 }
