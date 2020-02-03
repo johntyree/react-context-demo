@@ -4,8 +4,8 @@ import ColorContext from '../contexts/ColorContext';
 
 class Button extends Component {
 
-    renderText(context) {
-        switch(context) {
+    renderText({ language }) {
+        switch(language) {
             case 'dutch':
                 return 'Voorleggen'
             case 'english':
@@ -14,9 +14,9 @@ class Button extends Component {
         }
     }
 
-    renderButton(colorBit) {
+    renderButton(color) {
       return (
-          <button className={`ui button ${colorBit}`}>
+          <button className={`ui button ${color}`}>
             <LanguageContext.Consumer>
                 {this.renderText.bind(this)}
             </LanguageContext.Consumer>
