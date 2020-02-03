@@ -3,10 +3,8 @@ import LanguageContext from '../contexts/LanguageContext';
 
 class Field extends Component {
 
-    static contextType = LanguageContext;
-
-    renderText() {
-        switch(this.context) {
+    renderText(context) {
+        switch(context) {
             case 'dutch':
                 return 'Naam'
             case 'english':
@@ -16,10 +14,13 @@ class Field extends Component {
     }
 
     render() {
-        const text = this.renderText();
         return (
             <div className="ui field">
-                <label>{text}</label>
+                <label>
+                    <LanguageContext.Consumer>
+                        {this.renderText}
+                    </LanguageContext.Consumer>
+                </label>
                 <input />
             </div>
         );

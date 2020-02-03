@@ -16,10 +16,9 @@ class Button extends Component {
     }
 
     render() {
-        const text = this.renderText();
         return (
             <button className="ui button primary">
-                {text}
+                {this.renderText()}
             </button>
         );
     }
